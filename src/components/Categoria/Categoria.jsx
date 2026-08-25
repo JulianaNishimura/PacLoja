@@ -1,31 +1,23 @@
-
 import React from "react";
 import "./Categoria.css";
-import Produto from "../Produto/Produto";
+import Marca from "../Marca/Marca";
 
 const Categoria = (props) => {
 
-  const corDeFundo = { backgroundColor: props.corSecundaria };
-  const corSublinhado = { borderColor: props.corPrimaria };
+    const corDeFundo = { backgroundColor: props.corSecundaria };
+    const corSublinhado = { borderColor: props.corPrimaria };
 
-  return (
-    (props.produtos.length > 0) ? <section className="categoria" style={corDeFundo}>
-      <h3 style={corSublinhado}>{props.nome}</h3>
-      <div className="produtos">
-        {props.produtos.map(produto => <Produto
-                                            key={produto.nome}
-                                            nome={produto.nome}
-                                            marca={produto.marca}
-                                            preco={produto.preco}
-                                            imagem={produto.imagem}
-                                            conservacao={produto.conservacao}
-                                        /> )}
-
-      </div>
-    </section>
-    : ''
-  );
+    return (
+        (props.produtos.length > 0) ?
+            <section className="categoria" style={corDeFundo}>
+                <h3 style={corSublinhado}>{props.nome}</h3>
+                <Marca
+                    key={props.nome}
+                    produtos={props.produtos}
+                />
+            </section>
+        : ''
+    );
 };
 
 export default Categoria;
-
