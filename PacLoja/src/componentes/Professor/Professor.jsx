@@ -1,5 +1,3 @@
-
-import React from "react";
 import "./Professor.css";
 const Professor = (props) => {
 
@@ -7,7 +5,7 @@ const Professor = (props) => {
         <div className="colaborador">
 
             <div className="cabecalho">
-                <img src={props.imagem} alt={props.nome} />
+                {props.imagem && <img src={props.imagem} alt={props.nome} />}
             </div>
             <div className="rodape">
                 <h4>{props.nome}</h4>
@@ -18,4 +16,3 @@ const Professor = (props) => {
     );
 }
 export default Professor;
-

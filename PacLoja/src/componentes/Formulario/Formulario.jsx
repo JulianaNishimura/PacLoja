@@ -1,5 +1,4 @@
-
-import React, { useState } from "react";
+import { useState } from "react";
 import './Formulario.css';
 import CampoTexto from "../CampoTexto/CampoTexto";
 import ListaSuspensa from "../ListaSuspensa/ListaSuspensa";
@@ -12,30 +11,26 @@ const marcas = [
     'Asus',
     'Xing Ling'
 ];
+
 const Formulario = (props) => {
 
-    // Criando os estados...
     const [nome, setNome] = useState('')
     const [preco, setPreco] = useState('')
-    const [imagem, setImagem] = useState('')
     const [area, setArea] = useState('')
     const [marca, setMarca] = useState('')
 
     const aoSalvar = (evento) => {
         evento.preventDefault()
-        //console.log('Form foi submetido => ', nome, titulo, imagem, area)
-        props.aoProfCadastrado(
+        props.aoProdutoCadastrado(
             {
                 "nome" : nome,
                 "preco" : preco,
-                "imagem" : imagem,
                 "area" : area,
                 "marca" : marca
             }
         );
         setNome('');
         setPreco('');
-        setImagem('');
         setArea('');
         setMarca('');
     }
@@ -45,7 +40,7 @@ const Formulario = (props) => {
 
             <form onSubmit={aoSalvar}>
 
-                <h2>Dados do professor:</h2>
+                <h2>Dados do Produto:</h2>
 
                 <CampoTexto
                     label="Nome"
@@ -61,27 +56,21 @@ const Formulario = (props) => {
                     aoAlterado={valor => setPreco(valor)}
                 />
 
-                <CampoTexto
-                    label="Imagem"
-                    placeholder="Digite o endereço da imagem"
-                    valor={imagem}
-                    aoAlterado={valor => setImagem(valor)}
-                />
-
                 <ListaSuspensa
                     label="Áreas"
                     itens={props.areas}
                     valor={area}
                     aoAlterado={valor => setArea(valor)}
                 />
+
                 <ListaSuspensa
                     label="Marca"
                     itens={marcas}
                     valor={marca}
                     aoAlterado={valor => setMarca(valor)}
-/>
+                />
 
-                <Botao>Criar Professor</Botao>
+                <Botao>Cadastrar Produto</Botao>
 
             </form>
 
@@ -90,4 +79,3 @@ const Formulario = (props) => {
 }
 
 export default Formulario;
-

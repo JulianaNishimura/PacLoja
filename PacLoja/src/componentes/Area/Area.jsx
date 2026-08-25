@@ -1,5 +1,3 @@
-
-import React from "react";
 import "./Area.css";
 import Professor from "../Professor/Professor";
 
@@ -10,17 +8,16 @@ const Area = (props) => {
 
   return (
 
-    (props.professores.length > 0) ? <section className="area" style={corDeFundo}>
+    (props.produtos.length > 0) ? <section className="area" style={corDeFundo}>
 
       <h3 style={corSublinhado}>{props.nome}</h3>
 
       <div className="professores">
 
-        {props.professores.map( prof => <Professor
-                                            key={prof.nome}
-                                            nome={prof.nome}
-                                            titulo={prof.titulo}
-                                            imagem={prof.imagem}
+        {props.produtos.map( produto => <Professor
+                                            key={produto.nome}
+                                            nome={produto.nome}
+                                            titulo={produto.marca}
                                         /> )}
 
       </div>
@@ -34,4 +31,3 @@ const Area = (props) => {
 };
 
 export default Area;
-
