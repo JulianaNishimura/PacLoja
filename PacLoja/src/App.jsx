@@ -1,12 +1,11 @@
-
 import React, { useState } from "react";
-import Banner from "./componentes/Banner/Banner";
-import Formulario from "./componentes/Formulario/Formulario";
-import Area from "./componentes/Area/Area";
+import Banner from "./components/Banner/Banner";
+import Formulario from "./components/Formulario/Formulario";
+import Categoria from "./components/Categoria/Categoria";
 
 function App() {
 
-  const areas = [
+  const Categorias = [
     {
         nome: 'Computadores',
         corPrimaria: '#57c278',
@@ -34,47 +33,26 @@ function App() {
     }
 ];
 
+  const listaCategorias = Categorias.map( categoria => categoria.nome );
+	const [produtos, setProdutos] = useState( [] )
 
-  // Criando uma lista só com os nomes das áreas: 
-  const listaAreas = areas.map( area => area.nome );
-
-	// lista (array) de professores.
-	// o valor inicial é um array vazio []
-	const [professores, setProfessores] = useState( [] )
-
-  const adicionaProf = (prof) => {
-
-    // criando uma nova lista com o conteúdo anterior da lista.
-    //
-    // CUIDADO!!! não vá fazer listaNova = professores,
-    // isso não criará uma nova lista, apenas criará uma nova
-    // referência (ponteiro) para a mesma lista (o mesmo objeto).
-    //
-    // O método slice() de um array em JavaScript 
-    // retorna uma cópia superficial de uma porção de um array 
-    // dentro de um novo array objeto selecionado desde start 
-    // até end (end não é incluído). 
-    // Se não passarmos nenhum argumento para slice(), 
-    // ele retorna uma cópia do array inteiro.
-    const listaNova = professores.slice();
-
-    // adicionando o novo professor nesssa lista:
-    listaNova.push(prof)
-
-    // colocando a nova lista atualizada no estado:
-    setProfessores( listaNova )
+  const adicionaProduto = (prod) => {
+    const listaNova = produtos.slice();
+    listaNova.push(prod)
+    setProdutos( listaNova )
   }
 
 	return (
     <div>
       <Banner />
-      <Formulario areas={listaAreas} aoProfCadastrado={prof => adicionaProf(prof)} />
+      <Formulario categorias={listaCategorias} aoProdutoCadastrado={prod => adicionaProduto(prod)} />
 
-      { areas.map(area => <Area key={area.nome}
-                                nome={area.nome}
-                                corPrimaria={area.corPrimaria}
-                                corSecundaria={area.corSecundaria}
-                                professores={ professores.filter( prof => prof.area === area.nome ) }
+      { Categorias.map(categoria => <Categoria 
+                                key={categoria.nome}
+                                nome={categoria.nome}
+                                corPrimaria={categoria.corPrimaria}
+                                corSecundaria={categoria.corSecundaria}
+                                produtos={ produtos.filter( prod => prod.categoria === categoria.nome ) }
                           />) 
       }
 

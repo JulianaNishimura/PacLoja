@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import './Formulario.css';
 import CampoTexto from "../CampoTexto/CampoTexto";
@@ -14,7 +13,6 @@ const marcas = [
 ];
 const Formulario = (props) => {
 
-    // Criando os estados...
     const [nome, setNome] = useState('')
     const [preco, setPreco] = useState('')
     const [imagem, setImagem] = useState('')
@@ -23,7 +21,6 @@ const Formulario = (props) => {
 
     const aoSalvar = (evento) => {
         evento.preventDefault()
-        //console.log('Form foi submetido => ', nome, titulo, imagem, area)
         props.aoProfCadastrado(
             {
                 "nome" : nome,
