@@ -1,10 +1,11 @@
-
 .banner {
-    background-color: darkgrey;
+    background-color: rgb(236, 200, 0);
     text-align: center;
+    padding: 32px 16px;
 }
 
-.banner img {
-    max-width: 100%;
+.banner h1 {
+    margin: 0;
+    color: #414141;
 }
 
