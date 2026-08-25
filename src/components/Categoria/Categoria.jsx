@@ -8,13 +8,15 @@ const Categoria = (props) => {
     const corSublinhado = { borderColor: props.corPrimaria };
 
     return (
-        (props.produtos.length > 0) ?
-            <section className="categoria" style={corDeFundo}>
-                <h3 style={corSublinhado}>{props.nome}</h3>
-                <Marca
-                    key={props.nome}
-                    produtos={props.produtos}
-                />
+        (props.produtos.length > 0) ? <section className="categoria" style={corDeFundo}>
+              <h3 style={corSublinhado}>{props.nome}</h3>
+
+              <div className="marcas">
+                  <Marca
+                      key={props.nome}
+                      produtos={props.produtos}
+                  />
+              </div>
             </section>
         : ''
     );

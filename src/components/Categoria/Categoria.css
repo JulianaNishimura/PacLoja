@@ -1,26 +1,19 @@
-
 .categoria {
-	text-align: center;
-	padding: 32px;
+  text-align: center;
+  padding: 32px;
 }
-
-/*
-Importante fazer os estilos dependentes do estilo principal,
-para que não 'vazem' para fora deste componente.
-Este css vale para a aplicação inteira!!! 
-*/
 
 .categoria h3 {
-	font-size: 32px;
-	border-bottom: 4px solid;
-	display: inline-block;
-	padding-bottom: 8px;
-} 
-
-.categoria .produtos {
-	display: flex;
-	justify-content: space-around;
-	margin-top: 32px;
-	flex-wrap: wrap;
+  font-size: 32px;
+  border-bottom: 4px solid;
+  display: inline-block;
+  padding-bottom: 8px;
 }
 
+.categoria .marcas {
+  display: flex;
+  justify-content: space-around;
+  gap: 32px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
