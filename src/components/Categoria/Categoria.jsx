@@ -7,15 +7,20 @@ const Categoria = (props) => {
     const corDeFundo = { backgroundColor: props.corSecundaria };
     const corSublinhado = { borderColor: props.corPrimaria };
 
+    const marcas = [...new Set(props.produtos.map((produto) => produto.marca))];
+
     return (
         (props.produtos.length > 0) ? <section className="categoria" style={corDeFundo}>
               <h3 style={corSublinhado}>{props.nome}</h3>
 
               <div className="marcas">
-                  <Marca
-                      key={props.nome}
-                      produtos={props.produtos}
-                  />
+                  {marcas.map((marca) => (
+                      <Marca
+                          key={marca}
+                          nome={marca}
+                          produtos={props.produtos.filter((produto) => produto.marca === marca)}
+                      />
+                  ))}
               </div>
             </section>
         : ''
