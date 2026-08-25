@@ -18,6 +18,7 @@ const Area = (props) => {
                                             key={produto.nome}
                                             nome={produto.nome}
                                             titulo={produto.marca}
+                                            preco={produto.preco}
                                         /> )}
 
       </div>

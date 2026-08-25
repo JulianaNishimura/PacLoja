@@ -10,6 +10,7 @@ const Professor = (props) => {
             <div className="rodape">
                 <h4>{props.nome}</h4>
                 <h5>{props.titulo}</h5>
+                <p>R$ {props.preco}</p>
             </div>
 
         </div>

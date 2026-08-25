@@ -16,8 +16,8 @@ const Formulario = (props) => {
 
     const [nome, setNome] = useState('')
     const [preco, setPreco] = useState('')
-    const [area, setArea] = useState('')
-    const [marca, setMarca] = useState('')
+    const [area, setArea] = useState(props.areas[0])
+    const [marca, setMarca] = useState(marcas[0])
 
     const aoSalvar = (evento) => {
         evento.preventDefault()
@@ -31,8 +31,8 @@ const Formulario = (props) => {
         );
         setNome('');
         setPreco('');
-        setArea('');
-        setMarca('');
+        setArea(props.areas[0]);
+        setMarca(marcas[0]);
     }
 
     return (
