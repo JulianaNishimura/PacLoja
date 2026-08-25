@@ -1,122 +1,86 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+
+import React, { useState } from "react";
+import Banner from "./componentes/Banner/Banner";
+import Formulario from "./componentes/Formulario/Formulario";
+import Area from "./componentes/Area/Area";
 
 function App() {
-  const [count, setCount] = useState(0)
 
-  return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+  const areas = [
+    {
+        nome: 'Computadores',
+        corPrimaria: '#57c278',
+        corSecundaria: '#d9f7e9'
+    },
+    {
+        nome: 'Acessórios',
+        corPrimaria: '#82cffa',
+        corSecundaria: '#e8f8ff'
+    },
+    {
+        nome: 'Impressoras',
+        corPrimaria: '#a6d157',
+        corSecundaria: '#f0f8e2'
+    },
+    {
+        nome: 'Games',
+        corPrimaria: '#e06b69',
+        corSecundaria: '#fde7e8'
+    },
+    {
+        nome: 'Gadgets',
+        corPrimaria: '#d69be8',
+        corSecundaria: '#f5e8fa'
+    }
+];
 
-      <div className="ticks"></div>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+  // Criando uma lista só com os nomes das áreas: 
+  const listaAreas = areas.map( area => area.nome );
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+	// lista (array) de professores.
+	// o valor inicial é um array vazio []
+	const [professores, setProfessores] = useState( [] )
+
+  const adicionaProf = (prof) => {
+
+    // criando uma nova lista com o conteúdo anterior da lista.
+    //
+    // CUIDADO!!! não vá fazer listaNova = professores,
+    // isso não criará uma nova lista, apenas criará uma nova
+    // referência (ponteiro) para a mesma lista (o mesmo objeto).
+    //
+    // O método slice() de um array em JavaScript 
+    // retorna uma cópia superficial de uma porção de um array 
+    // dentro de um novo array objeto selecionado desde start 
+    // até end (end não é incluído). 
+    // Se não passarmos nenhum argumento para slice(), 
+    // ele retorna uma cópia do array inteiro.
+    const listaNova = professores.slice();
+
+    // adicionando o novo professor nesssa lista:
+    listaNova.push(prof)
+
+    // colocando a nova lista atualizada no estado:
+    setProfessores( listaNova )
+  }
+
+	return (
+    <div>
+      <Banner />
+      <Formulario areas={listaAreas} aoProfCadastrado={prof => adicionaProf(prof)} />
+
+      { areas.map(area => <Area key={area.nome}
+                                nome={area.nome}
+                                corPrimaria={area.corPrimaria}
+                                corSecundaria={area.corSecundaria}
+                                professores={ professores.filter( prof => prof.area === area.nome ) }
+                          />) 
+      }
+
+    </div>
+  );
 }
 
-export default App
+export default App;
+
