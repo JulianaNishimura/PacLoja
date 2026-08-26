@@ -1,24 +1,20 @@
-import React from "react";
-import './ListaSuspensa.css';
+import "./ListaSuspensa.css";
 
-const ListaSuspensa = (props) => {
+const ListaSuspensa = ({ label, itens, valor, aoAlterado }) => {
+  const aoEscolhido = (evento) => {
+    aoAlterado(evento.target.value);
+  };
 
-	const aoEscolhido = (evento) => {
-		props.aoAlterado(evento.target.value)
-	}
-
-	return (
-
-		<div className="lista-suspensa">
-			<label>{props.label}</label>
-			<select value={props.valor} onChange={aoEscolhido}>
-				{ props.itens.map( item => <option key={item}>{item}</option> ) }
-			</select>
-		</div>
-
-	)
-
-}
+  return (
+    <div className="lista-suspensa">
+      <label>{label}</label>
+      <select value={valor} onChange={aoEscolhido}>
+        {itens.map((item) => (
+          <option key={item}>{item}</option>
+        ))}
+      </select>
+    </div>
+  );
+};
 
 export default ListaSuspensa;
-

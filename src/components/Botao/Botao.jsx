@@ -1,15 +1,7 @@
+import "./Botao.css";
 
-import React from "react";
-import './Botao.css';
-
-const Botao = (props) => {
-
-	return (
-		<button className="botao">
-			{props.children}
-		</button>
-	)
-}
+const Botao = ({ children }) => {
+  return <button className="botao">{children}</button>;
+};
 
 export default Botao;
-

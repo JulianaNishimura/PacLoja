@@ -1,26 +1,25 @@
 import "./Marca.css";
 import Produto from "../Produto/Produto";
 
-const Marca = (props) => {
+const Marca = ({ nome, produtos }) => {
+  if (produtos.length === 0) return null;
 
-    return (
-        (props.produtos.length > 0) ? <section className="marca">
-                <h3>{props.nome}</h3>
-                <div className="produtos">
-                    {props.produtos.map((produto) => (
-                        <Produto
-                            key={produto.nome}
-                            nome={produto.nome}
-                            marca={produto.marca}
-                            preco={produto.preco}
-                            imagem={produto.imagem}
-                            conservacao={produto.conservacao}
-                        />
-                    ))}
-                </div>
-            </section>
-        : ''
-    );
+  return (
+    <section className="marca">
+      <h3>{nome}</h3>
+      <div className="produtos">
+        {produtos.map((produto) => (
+          <Produto
+            key={produto.nome}
+            nome={produto.nome}
+            preco={produto.preco}
+            imagem={produto.imagem}
+            conservacao={produto.conservacao}
+          />
+        ))}
+      </div>
+    </section>
+  );
 };
 
 export default Marca;

@@ -3,43 +3,17 @@ import "./Formulario.css";
 import CampoTexto from "../CampoTexto/CampoTexto";
 import ListaSuspensa from "../ListaSuspensa/ListaSuspensa";
 import Botao from "../Botao/Botao";
-import logosMarcas, { logoPadrao } from "../../data/logosMarcas";
+import { categorias, marcas } from "../../data/dados";
+import logosMarcas from "../../data/logosMarcas";
 
-const marcas = ["HP", "Dell", "Positivo", "Asus", "Xing Ling"];
+const nomesCategorias = categorias.map((categoria) => categoria.nome);
+const LOGO_PADRAO = "/img/logo-padrao.png"; 
 
-const categorias = [
-    {
-      nome: "Computadores",
-      corPrimaria: "#57c278",
-      corSecundaria: "#d9f7e9",
-    },
-    {
-      nome: "Acessórios",
-      corPrimaria: "#82cffa",
-      corSecundaria: "#e8f8ff",
-    },
-    {
-      nome: "Impressoras",
-      corPrimaria: "#a6d157",
-      corSecundaria: "#f0f8e2",
-    },
-    {
-      nome: "Games",
-      corPrimaria: "#e06b69",
-      corSecundaria: "#fde7e8",
-    },
-    {
-      nome: "Gadgets",
-      corPrimaria: "#d69be8",
-      corSecundaria: "#f5e8fa",
-    },
-];
-
-const Formulario = (props) => {
+const Formulario = ({ aoProdutoCadastrado }) => {
   const [nome, setNome] = useState("");
   const [preco, setPreco] = useState("");
   const [conservacao, setConservacao] = useState("");
-  const [categoria, setCategoria] = useState(categorias[0]);
+  const [categoria, setCategoria] = useState(nomesCategorias[0]);
   const [marca, setMarca] = useState(marcas[0]);
 
   const aoSalvar = (evento) => {
@@ -49,28 +23,28 @@ const Formulario = (props) => {
       alert("Informe o nome do produto.");
       return;
     }
-
     if (preco.trim() === "" || Number(preco) <= 0 || isNaN(Number(preco))) {
       alert("Informe um preço válido para o produto.");
       return;
     }
 
-    props.aoProdutoCadastrado({
-      nome: nome,
-      preco: preco,
-      categoria: categoria,
-      marca: marca,
-      conservacao : conservacao
-      imagem: logosMarcas[marca] || logoPadrao,
+    aoProdutoCadastrado({
+      nome,
+      preco,
+      categoria,
+      marca,
+      conservacao,
+      imagem: logosMarcas[marca] || LOGO_PADRAO,
     });
+
     setNome("");
     setPreco("");
-    setCategoria(categorias[0]);
+    setCategoria(nomesCategorias[0]);
     setMarca(marcas[0]);
   };
 
   const mudaConservacao = (evento) => {
-    setConservacao(event.target.value);
+    setConservacao(evento.target.value);
   };
 
   return (
@@ -80,55 +54,57 @@ const Formulario = (props) => {
 
         <ListaSuspensa
           label="Categorias"
-          itens={categorias}
+          itens={nomesCategorias}
           valor={categoria}
-          aoAlterado={(valor) => setCategoria(valor)}
+          aoAlterado={setCategoria}
         />
 
         <ListaSuspensa
           label="Marca"
           itens={marcas}
           valor={marca}
-          aoAlterado={(valor) => setMarca(valor)}
+          aoAlterado={setMarca}
         />
 
         <CampoTexto
           label="Nome"
           placeholder="Digite seu nome"
           valor={nome}
-          aoAlterado={(valor) => setNome(valor)}
+          aoAlterado={setNome}
         />
 
         <CampoTexto
           label="Preço"
           placeholder="Digite o preço"
           valor={preco}
-          aoAlterado={(valor) => setPreco(valor)}
+          aoAlterado={setPreco}
         />
 
         <label>
-          <input 
-            type="radio" 
-            name="conservacao" 
-            value="novo" 
-            checked={conservacao === 'novo'} 
-            onChange={mudaConservacao} 
-          /> Cherry
+          <input
+            type="radio"
+            name="conservacao"
+            value="novo"
+            checked={conservacao === "novo"}
+            onChange={mudaConservacao}
+          />{" "}
+          Novo
         </label>
 
         <label>
-          <input 
-            type="radio" 
-            name="conservacao" 
-            value="usado" 
-            checked={conservacao === 'usado'} 
-            onChange={mudaConservacao} 
-          /> Cherry
+          <input
+            type="radio"
+            name="conservacao"
+            value="usado"
+            checked={conservacao === "usado"}
+            onChange={mudaConservacao}
+          />{" "}
+          Usado
         </label>
 
         <div className="preview-logo-marca">
           <img
-            src={logosMarcas[marca] || logoPadrao}
+            src={logosMarcas[marca] || LOGO_PADRAO}
             alt={`Logo da marca ${marca}`}
           />
           <span>Logo que será usada para {marca}</span>
