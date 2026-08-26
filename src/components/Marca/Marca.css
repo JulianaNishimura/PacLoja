@@ -34,7 +34,6 @@
   .marca {
     transition: none;
   }
-
   .marca:hover {
     transform: none;
   }
