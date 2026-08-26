@@ -1,19 +1,21 @@
 .categoria {
   text-align: center;
-  padding: 32px;
+  padding: 40px 32px;
+  border-radius: 8px;
 }
 
 .categoria h3 {
-  font-size: 32px;
+  font-size: 28px;
   border-bottom: 4px solid;
   display: inline-block;
   padding-bottom: 8px;
+  margin-bottom: 24px;
 }
 
 .categoria .marcas {
   display: flex;
-  justify-content: space-around;
-  gap: 32px;
+  justify-content: center;
+  gap: 24px;
   margin-top: 32px;
   flex-wrap: wrap;
 }

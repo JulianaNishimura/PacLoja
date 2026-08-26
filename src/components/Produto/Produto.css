@@ -1,29 +1,47 @@
-
 .produto {
 	width: 280px;
+	transition: transform 0.2s ease;
+	background-color: #fbfbfb; 
+	border-radius: 12px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+	overflow: hidden;
+}
+
+.produto:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
 .produto .cabecalho {
-	background-color: #F0F0F0;
-	border-radius: 10px 10px 0px 0px;
+	background: linear-gradient(135deg, #848a93, #636b76); 
+	border-radius: 12px 12px 0px 0px;
+	position: relative;
+	height: 120px;
+	display: flex;
+	justify-content: center;
+	align-items: flex-end;
 }
+
 .produto img {
 	width: 100px;
 	border-radius: 50%;
 	position: relative;
 	bottom: -50px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+	background: rgb(255, 255, 254);
+	padding: 4px;
 }
 
 .produto .rodape {
-	background: #FFFFFF;
-	box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.08);
-	border-radius: 0px 0px 10px 10px;
+	background-color: #ffffff; 
+	border-radius: 0px 0px 12px 12px;
 	padding-top: 90px;
-	padding-bottom: 40px;
+	padding-bottom: 32px;
+	text-align: center;
 }
 
 .produto .rodape h4 {
-	color: #6278F7;
+	color: #000000;
 	font-size: 18px;
 	line-height: 22px;
 	font-weight: bold;
@@ -31,9 +49,14 @@
 }
 
 .produto .rodape h5 {
-	font-size: 18px;
+	font-size: 16px;
 	line-height: 22px;
-	color: #212121;
+	color: #ffffff;
 	padding: 0 16px;
+	margin: 4px 0;
+	background: #396acd; 
+	display: inline-block;
+	padding: 4px 12px;
+	border-radius: 20px;
+	font-weight: 500;
 }
-

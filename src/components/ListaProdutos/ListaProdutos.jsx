@@ -1,9 +1,10 @@
+import "./ListaProdutos.css";
 import Categoria from "../Categoria/Categoria";
 import { categorias } from "../../data/dados";
 
 const ListaProdutos = ({ produtos }) => {
   return (
-    <>
+    <div className="lista-produtos">
       {categorias.map((categoria) => (
         <Categoria
           key={categoria.nome}
@@ -15,7 +16,7 @@ const ListaProdutos = ({ produtos }) => {
           )}
         />
       ))}
-    </>
+    </div>
   );
 };
 
