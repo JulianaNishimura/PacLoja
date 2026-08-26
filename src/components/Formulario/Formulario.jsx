@@ -3,6 +3,7 @@ import "./Formulario.css";
 import CampoTexto from "../CampoTexto/CampoTexto";
 import ListaSuspensa from "../ListaSuspensa/ListaSuspensa";
 import Botao from "../Botao/Botao";
+import logosMarcas, { logoPadrao } from "../../data/logosMarcas";
 
 const marcas = ["HP", "Dell", "Positivo", "Asus", "Xing Ling"];
 
@@ -43,12 +44,24 @@ const Formulario = (props) => {
 
   const aoSalvar = (evento) => {
     evento.preventDefault();
+
+    if (nome.trim() === "") {
+      alert("Informe o nome do produto.");
+      return;
+    }
+
+    if (preco.trim() === "" || Number(preco) <= 0 || isNaN(Number(preco))) {
+      alert("Informe um preço válido para o produto.");
+      return;
+    }
+
     props.aoProdutoCadastrado({
       nome: nome,
       preco: preco,
       categoria: categoria,
       marca: marca,
       conservacao : conservacao
+      imagem: logosMarcas[marca] || logoPadrao,
     });
     setNome("");
     setPreco("");
@@ -112,6 +125,14 @@ const Formulario = (props) => {
             onChange={mudaConservacao} 
           /> Cherry
         </label>
+
+        <div className="preview-logo-marca">
+          <img
+            src={logosMarcas[marca] || logoPadrao}
+            alt={`Logo da marca ${marca}`}
+          />
+          <span>Logo que será usada para {marca}</span>
+        </div>
 
         <Botao>Cadastrar Produto</Botao>
       </form>

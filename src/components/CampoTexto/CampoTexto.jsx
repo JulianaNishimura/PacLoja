@@ -1,5 +1,3 @@
-
-import React from "react";
 import './CampoTexto.css';
 
 const CampoTexto = (props) => {
