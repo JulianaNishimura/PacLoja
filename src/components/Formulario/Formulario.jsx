@@ -3,6 +3,7 @@ import "./Formulario.css";
 import CampoTexto from "../CampoTexto/CampoTexto";
 import ListaSuspensa from "../ListaSuspensa/ListaSuspensa";
 import Botao from "../Botao/Botao";
+import logosMarcas, { logoPadrao } from "../../data/logosMarcas";
 
 const marcas = ["HP", "Dell", "Positivo", "Asus", "Xing Ling"];
 
@@ -30,6 +31,7 @@ const Formulario = (props) => {
       preco: preco,
       categoria: categoria,
       marca: marca,
+      imagem: logosMarcas[marca] || logoPadrao,
     });
     setNome("");
     setPreco("");
@@ -69,6 +71,14 @@ const Formulario = (props) => {
           valor={marca}
           aoAlterado={(valor) => setMarca(valor)}
         />
+
+        <div className="preview-logo-marca">
+          <img
+            src={logosMarcas[marca] || logoPadrao}
+            alt={`Logo da marca ${marca}`}
+          />
+          <span>Logo que será usada para {marca}</span>
+        </div>
 
         <Botao>Cadastrar Produto</Botao>
       </form>

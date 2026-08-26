@@ -1,6 +1,6 @@
 import React from "react";
 import "./Marca.css";
-import Produto from "../../../../src/components/Produto/Produto";
+import Produto from "../Produto/Produto";
 
 const Marca = (props) => {
 
