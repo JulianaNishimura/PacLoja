@@ -1,4 +1,3 @@
-import React from "react";
 import "./Marca.css";
 import Produto from "../Produto/Produto";
 
@@ -15,6 +14,7 @@ const Marca = (props) => {
                             marca={produto.marca}
                             preco={produto.preco}
                             imagem={produto.imagem}
+                            conservacao={produto.conservacao}
                         />
                     ))}
                 </div>

@@ -6,10 +6,39 @@ import Botao from "../Botao/Botao";
 
 const marcas = ["HP", "Dell", "Positivo", "Asus", "Xing Ling"];
 
+const categorias = [
+    {
+      nome: "Computadores",
+      corPrimaria: "#57c278",
+      corSecundaria: "#d9f7e9",
+    },
+    {
+      nome: "Acessórios",
+      corPrimaria: "#82cffa",
+      corSecundaria: "#e8f8ff",
+    },
+    {
+      nome: "Impressoras",
+      corPrimaria: "#a6d157",
+      corSecundaria: "#f0f8e2",
+    },
+    {
+      nome: "Games",
+      corPrimaria: "#e06b69",
+      corSecundaria: "#fde7e8",
+    },
+    {
+      nome: "Gadgets",
+      corPrimaria: "#d69be8",
+      corSecundaria: "#f5e8fa",
+    },
+];
+
 const Formulario = (props) => {
   const [nome, setNome] = useState("");
   const [preco, setPreco] = useState("");
-  const [categoria, setCategoria] = useState(props.categorias[0]);
+  const [conservacao, setConservacao] = useState("");
+  const [categoria, setCategoria] = useState(categorias[0]);
   const [marca, setMarca] = useState(marcas[0]);
 
   const aoSalvar = (evento) => {
@@ -19,17 +48,36 @@ const Formulario = (props) => {
       preco: preco,
       categoria: categoria,
       marca: marca,
+      conservacao : conservacao
     });
     setNome("");
     setPreco("");
-    setCategoria(props.categorias[0]);
+    setCategoria(categorias[0]);
     setMarca(marcas[0]);
+  };
+
+  const mudaConservacao = (evento) => {
+    setConservacao(event.target.value);
   };
 
   return (
     <section className="formulario">
       <form onSubmit={aoSalvar}>
         <h2>Dados do Produto:</h2>
+
+        <ListaSuspensa
+          label="Categorias"
+          itens={categorias}
+          valor={categoria}
+          aoAlterado={(valor) => setCategoria(valor)}
+        />
+
+        <ListaSuspensa
+          label="Marca"
+          itens={marcas}
+          valor={marca}
+          aoAlterado={(valor) => setMarca(valor)}
+        />
 
         <CampoTexto
           label="Nome"
@@ -45,19 +93,25 @@ const Formulario = (props) => {
           aoAlterado={(valor) => setPreco(valor)}
         />
 
-        <ListaSuspensa
-          label="Categorias"
-          itens={props.categorias}
-          valor={categoria}
-          aoAlterado={(valor) => setCategoria(valor)}
-        />
+        <label>
+          <input 
+            type="radio" 
+            name="conservacao" 
+            value="novo" 
+            checked={conservacao === 'novo'} 
+            onChange={mudaConservacao} 
+          /> Cherry
+        </label>
 
-        <ListaSuspensa
-          label="Marca"
-          itens={marcas}
-          valor={marca}
-          aoAlterado={(valor) => setMarca(valor)}
-        />
+        <label>
+          <input 
+            type="radio" 
+            name="conservacao" 
+            value="usado" 
+            checked={conservacao === 'usado'} 
+            onChange={mudaConservacao} 
+          /> Cherry
+        </label>
 
         <Botao>Cadastrar Produto</Botao>
       </form>
